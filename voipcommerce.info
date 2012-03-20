@@ -1,0 +1,7 @@
+; $Id$
+core = "6.x"
+dependencies[] = "voip"
+dependencies[] = "uc_shipping"
+description = "VoIP Drupal integration with Ubercart."
+name = "VoIP Commerce"
+package = "VoIP Commerce"
