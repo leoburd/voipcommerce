@@ -25,7 +25,7 @@ function voipcommerce_voipscript_load_script($script_name, $options=NULL) {
     case 'voipcommerce_order_status_script':
       //type the invoice number and get information about a current order status
       $script = new VoipScript('voipcommerce_order_status_script');
-      $script->addSay(v('Welcome to the VoIP Commerce.'));
+      $script->addSay(v('Welcome to the VoIP Commerce shop.'));
       $script->addLabel('main_menu');
       $options_menu = v('For order status, dial 1. For customer support, dial 2. For hours of operation, dial 3. To hang up, dial the star key. ');
       $input_options = array(
