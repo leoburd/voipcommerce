@@ -27,11 +27,13 @@ function voipcommerce_voipscript_load_script($script_name, $options=NULL) {
       $script = new VoipScript('voipcommerce_order_status_script');
       $script->addSay(v('Welcome to the VoIP Commerce shop.'));
       $script->addLabel('main_menu');
-      $options_menu = v('For order status, dial 1. For customer support, dial 2. For hours of operation, dial 3. To hang up, dial the star key. ');
+      $options_menu = v('For order status, dial 1. For customer support, dial 2. For hours of operation, dial 3.'
+      . ' To get text message notifications whenever your order is updated, press 4. To hang up, dial the star key. ');
       $input_options = array(
         '1' => 'status',
         '2' => 'customer support',
         '3' => 'hours',
+        '4' => 'update subscription',
         '*' => 'hang up',
         'i' => 'hang up',
         't' => 'hang up'
@@ -57,6 +59,12 @@ function voipcommerce_voipscript_load_script($script_name, $options=NULL) {
       $script->addLabel('hours');
       $script->addSay(v('Our office is open Monday to Friday from 9am to 5pm.'));
       $script->addGoto('main_menu');
+      
+      $script->addLabel('update subscription');
+      $script->addSendText(t('You are now subscribed to text message notifications.')); 
+      $script->addSay(v('You are now subscribed to text message notifications.'));
+      $script->addGoto('main_menu');
+      
       $script->addLabel('hang up');
       $script->addSay(v('Thanks so much for calling our office. Bye bye.'));
       $script->addHangup();
@@ -73,7 +81,7 @@ function _voipcommerce_order_status_callback($order_id) {
     $say = "Your order is marked as ".$order_state;
   }
   else {
-    $say = "Sorry, order number ".$order_id." is not found.";
+    $say = "Sorry, order number ".$order_id." has not been found.";
   }
   return $say;
 }
